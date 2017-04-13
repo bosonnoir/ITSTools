@@ -5,7 +5,7 @@ export BINDIR=$(pwd)
 cd INPUTS
 
 tar xzf $1.tgz
-if [ -d ../patch/$1 ] ; 
+if [ -d ../patch/$1 ] ;
 then
     \cp -rf ../patch/$1 .
 fi
@@ -18,6 +18,6 @@ $BINDIR/runeclipse.sh $MODEL $2 $3
 
 cd ..
 
-\rm -rf $1
+# \rm -rf $1
 
 cd ..
