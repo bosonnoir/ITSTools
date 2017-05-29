@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 # WARNING put the absolute path to the modelcheck executable here
-my $spotmc = "/work/max/git/spot/tests/ltsmin/modelcheck";
+my $spotmc = "/home/mcc/spot/tests/ltsmin/modelcheck";
 my $techniques = "TECHNIQUES SEQUENTIAL_PROCESSING EXPLICIT STATE_COMPRESSION";
 
 open IN, "< $ARGV[1]";
@@ -20,11 +20,11 @@ while (my $line = <IN>)
     {
       if ($res =~ /no accepting run found/)
       {
-        print "FORMULA @words[1] FALSE $techniques\n";
+        print "FORMULA @words[1] TRUE $techniques\n";
       }
       if ($res =~ /an accepting run exists/)
       {
-        print "FORMULA @words[1] TRUE $techniques\n";
+        print "FORMULA @words[1] FALSE $techniques\n";
       }
     }
     close RESULT;
