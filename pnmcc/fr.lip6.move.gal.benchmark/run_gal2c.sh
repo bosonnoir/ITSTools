@@ -1,6 +1,12 @@
 #!/bin/bash
 
-export BINDIR=$(pwd)
+CURRENT=$(pwd)
+export BINDIR=/home/mcc/ITSTools/pnmcc/fr.lip6.move.gal.benchmark
+
+if [ "$#" -ne 2 ]; then
+  echo "Usage: $0 MODEL EXAMINATION"
+  exit 1
+fi
 
 # We only compete on LTLCardinality track
 case $2 in
@@ -12,7 +18,7 @@ case $2 in
     ;;
 esac
 
-cd INPUTS
+cd /home/mcc/BenchKit/INPUTS
 
 tar xzf $1.tgz
 if [ -d ../patch/$1 ] ;
@@ -29,16 +35,12 @@ $BINDIR/gal2c $MODEL/$2.gal
 
 # I need perl here
 $BINDIR/run_gal2c.pl $MODEL/$2.gal2C $MODEL/$2.ltl
-#for f in $(grep -v "^#" $MODEL/$2.ltl); do
-# echo $f
-# /work/max/git/spot/tests/ltsmin/modelcheck -Z $MODEL/$2.gal2C $f
-#one
 
 cd ..
 
-#\rm -rf $1
+\rm -rf $1
 
-cd ..
+cd $CURRENT
 
 
 
